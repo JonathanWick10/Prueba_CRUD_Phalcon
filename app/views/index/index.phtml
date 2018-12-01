@@ -1,0 +1,257 @@
+<hr>
+  <div class="row">
+    <div class="col-12 col-md-12">
+      <!-- Content Section -->
+    <!-- crud jquery-->
+    <div class="da">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pull-right">
+            <button class="btn btn-success" data-toggle="modal" data-target="#add_new_record_modal">Crear Usuario</button>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <div id="records_content">
+            <table id="grid"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Bootstrap Modals -->
+<!-- Modal - Add New Record/User -->
+<div class="modal fade" id="add_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <?php echo $this->tag->form(array("id" => "form1")); ?>
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+         <label for="identificacion" >Identificación</label>
+                <?php echo $this->tag->textField(array("identificacion", "class" => "form-control", "required" => "required")); ?>
+        </div>
+        <div class="form-group">
+          <label for="nombre" >Nombre:</label>
+                <?php echo $this->tag->textField(array("nombre", "class" => "form-control", "required" => "required")); ?>
+        </div>
+        <div class="form-group">
+          <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
+                <?php echo $this->tag->textField(array("fecha_de_nacimiento", "class" => "form-control", "required" => "required")); ?>
+        </div>
+        <div class="form-group">
+           <label for="genero" >Género:</label>
+                <?php echo $this->tag->selectStatic(['genero', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino']]); ?>
+        </div>
+        <div class="form-group">
+             <label for="estado_civil" >Estado Civil:</label>
+                 <?php echo $this->tag->selectStatic(['estado_civil', ['Soltero(a)' => 'Soltero(a)', 'Casado(a)' => 'Casado(a)', 'Viudo(a)' => 'Viudo(a)', 'Divorciado(a)' => 'Divorciado(a)']]); ?>
+        </div>
+        <div class="form-group">
+            <label for="direccion" >Dirección:</label>
+                <?php echo $this->tag->textField(array("direccion", "class" => "form-control", "required" => "required")); ?>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono:</label>
+                <?php echo $this->tag->textField(array("telefono", "class" => "form-control", "required" => "required")); ?>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+           <?php echo $this->tag->submitButton(array("Aceptar", "class" => "btn btn-success")); ?>
+      </div>
+      <?=$this->tag->endForm()?>
+    </div>
+  </div>
+</div>
+
+<!-- // Modal -->
+<!-- Modal - Update New Record/User -->
+<div class="modal fade" id="update_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <?php echo $this->tag->form(array("id" => "form2")); ?>
+      <div class="modal-header">
+        <h5 class="modal-title">Actualizar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+         <label for="identificacion2" >Identificación</label>
+                <?php echo $this->tag->textField(array("identificacion2", "class" => "form-control", "name" => "identificacion2")); ?>
+                <input type="hidden" id="idU" name="idU">
+        </div>
+        <div class="form-group">
+          <label for="nombre2" >Nombre:</label>
+                <?php echo $this->tag->textField(array("nombre2", "class" => "form-control")); ?>
+        </div>
+        <div class="form-group">
+          <label for="fecha_de_nacimiento2">Fecha de Nacimiento:</label>
+                <?php echo $this->tag->textField(array("fecha_de_nacimiento2", "class" => "form-control")); ?>
+        </div>
+        <div class="form-group">
+           <label for="genero2" >Género:</label>
+                <?php echo $this->tag->selectStatic(['genero2', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino']]); ?>
+        </div>
+        <div class="form-group">
+             <label for="estado_civil2" >Estado Civil:</label>
+                 <?php echo $this->tag->selectStatic(['estado_civil2', ['Soltero(a)' => 'Soltero(a)', 'Casado(a)' => 'Casado(a)', 'Viudo(a)' => 'Viudo(a)', 'Divorciado(a)' => 'Divorciado(a)']]); ?>
+        </div>
+        <div class="form-group">
+            <label for="direccion2" >Dirección:</label>
+                <?php echo $this->tag->textField(array("direccion2", "class" => "form-control")); ?>
+        </div>
+        <div class="form-group">
+          <label for="telefono2">Telefono:</label>
+                <?php echo $this->tag->textField(array("telefono2", "class" => "form-control")); ?>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" >Aceptar</button>
+      </div>
+      <?=$this->tag->endForm()?>
+    </div>
+  </div>
+</div>
+<!-- // Modal -->
+<!-- // Modal -->
+<!-- Modal - View New Record/User -->
+<div class="modal fade" id="view_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Actualizar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+         <label for="3" >Identificación</label>
+                <?php echo $this->tag->textField(array("identificacion3", "class" => "form-control", "name" => "identificacion3", "readonly" => "readonly")); ?>
+        </div>
+        <div class="form-group">
+          <label for="nombre3" >Nombre:</label>
+                <?php echo $this->tag->textField(array("nombre3", "class" => "form-control", "readonly" => "readonly")); ?>
+        </div>
+        <div class="form-group">
+          <label for="fecha_de_nacimiento3">Fecha de Nacimiento:</label>
+                <?php echo $this->tag->textField(array("fecha_de_nacimiento3", "class" => "form-control", "readonly" => "readonly")); ?>
+        </div>
+        <div class="form-group">
+           <label for="genero3" >Género:</label>
+                <?php echo $this->tag->selectStatic(['genero3', ['Masculino' => 'Masculino', 'Femenino' => 'Femenino']]); ?>
+        </div>
+        <div class="form-group">
+             <label for="estado_civil3" >Estado Civil:</label>
+                 <?php echo $this->tag->selectStatic(['estado_civil3', ['Soltero(a)' => 'Soltero(a)', 'Casado(a)' => 'Casado(a)', 'Viudo(a)' => 'Viudo(a)', 'Divorciado(a)' => 'Divorciado(a)']]); ?>
+        </div>
+        <div class="form-group">
+            <label for="direccion3" >Dirección:</label>
+                <?php echo $this->tag->textField(array("direccion3", "class" => "form-control", "readonly" => "readonly")); ?>
+        </div>
+        <div class="form-group">
+          <label for="telefono3">Telefono:</label>
+                <?php echo $this->tag->textField(array("telefono3", "class" => "form-control", "readonly" => "readonly")); ?>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // Modal -->
+<!-- // Modal -->
+<!-- Modal - Delete New Record/User -->
+<div class="modal fade" id="delete_new_record_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <?php echo $this->tag->form(array("id" => "form3")); ?>
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align:center">
+         <p>Esta seguro de eliminar al Usuario ?</p>
+         <input type="hidden" id="nomE" name="nomE" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" >Aceptar</button>
+      </div>
+      <?=$this->tag->endForm()?>
+    </div>
+  </div>
+</div>
+<!-- // Modal -->
+
+<script>
+$(document).ready(function(){
+  var grid;
+    obtenerdatos();
+    $("#genero").addClass("form-control");
+    $("#estado_civil").addClass("form-control");
+    $("#genero").attr("required","required");
+    $("#estado_civil").attr("required","required");
+    $("#fecha_de_nacimiento").attr("type","date");
+    $("#identificacion").attr("type","number");
+    $("#telefono").attr("type","number");
+    $('#grid').addClass("table-responsive");
+    $('#editarp').addClass("fa fa-pencil");
+    $('#eliminarp').addClass("fa fa-remove");
+
+      $("#form1").on("submit", function(e)
+       {
+       e.preventDefault();
+       $.post("<?php echo $this->url->get('Index/register') ?>", $(this).serialize() , function(data)
+       {
+           }).done(function() {
+            window.grid.reload();
+                  $('#add_new_record_modal').modal('hide');
+                  LimpiarFormularioFunc();
+           }).fail(function() {
+
+           });
+       });
+
+      $("#form2").on("submit", function(e)
+       {
+       e.preventDefault();
+       $.post("<?php echo $this->url->get('Index/update') ?>", $(this).serialize() , function(data)
+       {
+           }).done(function() {
+            window.grid.reload();
+                  $('#update_new_record_modal').modal('hide');
+           }).fail(function() {
+
+           });
+       });
+
+      $("#form3").on("submit", function(e)
+       {
+       e.preventDefault();
+       $.post("<?php echo $this->url->get('Index/delete') ?>", $(this).serialize() , function(data)
+       {
+           }).done(function() {
+            window.grid.reload();
+                  $('#delete_new_record_modal').modal('hide');
+           }).fail(function() {
+
+           });
+       })
+    });
+
+</script>
